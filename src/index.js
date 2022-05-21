@@ -1,16 +1,43 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-function Home() {
-  return (
-    <div>
-      <h1>Home!</h1>
-    </div>
-  );
-}
+import NavBar from './NavBar';
+import Home from './Home';
+import About from './About';
+import Login from './Login';
+import SignUp from './Signup';
+import Messages from './Messages';
 
 function App() {
-  return <Home />;
+   return (
+      <>
+         <NavBar />
+         <Switch>
+            <Route path="/about">
+               <About />
+            </Route>
+            <Route path="/login">
+               <Login />
+            </Route>
+            <Route path="/signup">
+               <SignUp />
+            </Route>
+            <Route path="/messages">
+               <Messages />
+            </Route>
+
+            <Route exact path="/">
+               <Home />
+            </Route>
+         </Switch>
+      </>
+   );
 }
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(
+   <Router>
+      <App />
+   </Router>,
+   document.getElementById('root')
+);
